@@ -40,7 +40,9 @@ public class Program {
 		catch(WithdrawException e){
 			System.out.println("Withdraw error: " + e.getMessage());
 		}
-		
+		catch(RuntimeException e) {
+			System.out.println("Unexpected error");
+		}
 
 sc.close();	}
 
