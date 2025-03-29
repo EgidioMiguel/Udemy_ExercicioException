@@ -13,11 +13,10 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		try {
+		
 			int number;
 			double intBalance, wdLimit, amount;
-			String holder;
-	
+			String holder;	
 	
 			System.out.println("Enter account data");
 			System.out.print("Number: ");
@@ -28,21 +27,25 @@ public class Program {
 			System.out.print("Initial balance: ");
 			intBalance = sc.nextDouble();
 			System.out.print("Withdraw limit: ");
-			wdLimit = sc.nextDouble();		
+			wdLimit = sc.nextDouble();	
+			
 			Account acc = new Account(number, holder, intBalance, wdLimit);
 	
 			System.out.print("\nEnter amount for withdraw: ");
 			amount = sc.nextDouble();
-			acc.withdraw(amount);
-	
-			System.out.println(acc);
-		}
-		catch(WithdrawException e){
-			System.out.println("Withdraw error: " + e.getMessage());
-		}
-		catch(RuntimeException e) {
-			System.out.println("Unexpected error");
-		}
+			
+			try {	
+				acc.withdraw(amount);	
+				System.out.printf("New balance: %.2f%n",acc.getBalance());
+				
+			}
+			catch(WithdrawException e){
+				System.out.println("Withdraw error: " + e.getMessage());			
+			}
+			catch(RuntimeException e) {
+				System.out.println("Unexpected error");
+			}
+			
 
 sc.close();	}
 
